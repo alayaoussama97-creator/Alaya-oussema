@@ -1,0 +1,134 @@
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Plus Jakarta Sans", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Space Grotesk", sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
+  
+  /* Nexus Zero Trust - Onyx Perfection Palette */
+  --color-bg-base: #000000;
+  --color-bg-surface: #0a0a0a;
+  --color-bg-elevated: #111111;
+  --color-border-dim: rgba(255, 255, 255, 0.05);
+  --color-border-bright: rgba(255, 255, 255, 0.15);
+  
+  --color-text-vibrant: #ffffff;
+  --color-text-dim: #a1a1aa;
+  --color-text-muted: #52525b;
+  
+  --color-nexus-blue: #0ea5e9;
+  --color-nexus-cyan: #22d3ee;
+  --color-nexus-safe: #10b981;
+  --color-nexus-warn: #fbbf24;
+  --color-nexus-alert: #ef4444;
+  --color-nexus-premium: #a855f7;
+
+  /* Aliases for legacy compatibility */
+  --color-accent-info: var(--color-nexus-blue);
+  --color-accent-safe: var(--color-nexus-safe);
+  --color-accent-warn: var(--color-nexus-warn);
+  --color-accent-alert: var(--color-nexus-alert);
+  --color-accent-premium: var(--color-nexus-premium);
+  --color-bg-card: var(--color-bg-surface);
+  --color-bg-sidebar: var(--color-bg-base);
+  --color-border-subtle: var(--color-border-dim);
+  --color-text-primary: var(--color-text-vibrant);
+  --color-text-secondary: var(--color-text-dim);
+}
+
+@layer base {
+  body {
+    @apply bg-bg-base text-text-vibrant font-sans antialiased selection:bg-nexus-blue/30 selection:text-white;
+    background-image: 
+      radial-gradient(circle at 50% -20%, rgba(14, 165, 233, 0.08) 0%, transparent 40%),
+      radial-gradient(circle at 0% 100%, rgba(16, 185, 129, 0.02) 0%, transparent 30%);
+    background-attachment: fixed;
+  }
+}
+
+@layer components {
+  .nx-card {
+    @apply bg-bg-surface border border-border-dim rounded-2xl overflow-hidden shadow-2xl transition-all duration-300;
+  }
+  
+  .nx-card-hover {
+    @apply hover:border-border-bright hover:bg-bg-elevated hover:shadow-[0_0_40px_rgba(0,0,0,0.8)];
+  }
+
+  .nx-glass {
+    @apply bg-bg-surface/60 backdrop-blur-2xl border border-white/5;
+  }
+  
+  .nx-btn-primary {
+    @apply bg-nexus-blue hover:bg-nexus-blue/90 text-white font-semibold py-2.5 px-6 rounded-xl transition-all active:scale-[0.98] disabled:opacity-50 shadow-lg shadow-nexus-blue/10 flex items-center justify-center gap-2;
+  }
+
+  .nx-btn-ghost {
+    @apply hover:bg-white/5 text-text-dim hover:text-text-vibrant font-medium py-2.5 px-5 rounded-xl transition-all inline-flex items-center justify-center gap-2;
+  }
+
+  .nx-input {
+    @apply bg-white/5 border border-border-dim rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-nexus-blue/50 focus:bg-white/[0.08] transition-all placeholder:text-text-muted;
+  }
+  
+  .nav-item {
+    @apply flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-medium transition-all text-text-dim hover:text-text-vibrant hover:bg-white/5 mx-2 my-0.5;
+  }
+  
+  .nav-item.active {
+    @apply bg-white/10 text-text-vibrant shadow-[inset_0_1px_1px_rgba(255,255,255,0.1)];
+  }
+
+  .status-badge {
+    @apply px-2.5 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider border;
+  }
+}
+
+/* Scrollbar Engineering */
+.custom-scrollbar::-webkit-scrollbar {
+  width: 4px;
+  height: 4px;
+}
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: transparent;
+}
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  @apply bg-white/10 rounded-full hover:bg-white/20 transition-colors;
+}
+
+/* Animations & Effects */
+@keyframes shimmer {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(100%); }
+}
+
+.nx-shimmer {
+  position: relative;
+  overflow: hidden;
+}
+
+.nx-shimmer::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.05),
+    transparent
+  );
+  animation: shimmer 2s infinite;
+}
+
+/* Netflix Hover Grid Support */
+.nx-grid-item {
+  @apply relative aspect-video bg-bg-surface border border-border-dim rounded-2xl overflow-hidden shadow-2xl cursor-pointer transition-all duration-500 ease-[cubic-bezier(0.4,0,0.2,1)];
+}
+
+.nx-grid-item:hover {
+  @apply scale-105 z-10 border-nexus-blue/30 shadow-none;
+}

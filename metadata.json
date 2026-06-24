@@ -1,0 +1,6 @@
+{
+  "name": "Nexus AI Cyber-Social Platform",
+  "description": "An all-in-one AI-powered platform for network security monitoring, advanced log analysis, and elite social collaboration.",
+  "requestFramePermissions": ["camera", "microphone", "geolocation", "publickey-credentials-get", "publickey-credentials-create", "otp-credentials", "payment", "identity-credentials-get", "webauthn"],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

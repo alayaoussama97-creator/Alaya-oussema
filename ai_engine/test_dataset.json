@@ -1,0 +1,7 @@
+[
+  {"user_id": "normal_user_1", "hour": 14.5, "geo_risk": 0.1, "frequency": 0.05, "device_trust": 0.95, "failed_logins": 0, "ports_scanned": 0, "mtls_fail": 0, "label": "NORMAL"},
+  {"user_id": "normal_user_2", "hour": 10.0, "geo_risk": 0.1, "frequency": 0.08, "device_trust": 0.90, "failed_logins": 0, "ports_scanned": 0, "mtls_fail": 0, "label": "NORMAL"},
+  {"user_id": "attacker_bf", "hour": 03.2, "geo_risk": 0.9, "frequency": 0.50, "device_trust": 0.10, "failed_logins": 25, "ports_scanned": 0, "mtls_fail": 1, "label": "BRUTE_FORCE"},
+  {"user_id": "attacker_scan", "hour": 22.1, "geo_risk": 0.7, "frequency": 0.80, "device_trust": 0.20, "failed_logins": 0, "ports_scanned": 450, "mtls_fail": 0, "label": "SCAN"},
+  {"user_id": "anomalous_admin", "hour": 02.0, "geo_risk": 0.8, "frequency": 0.40, "device_trust": 0.85, "failed_logins": 1, "ports_scanned": 0, "mtls_fail": 0, "label": "UEBA_ANOMALY"}
+]

@@ -1,0 +1,109 @@
+{
+  "entities": {
+    "video": {
+      "title": "Video",
+      "description": "Metadata for uploaded or linked videos",
+      "type": "object",
+      "properties": {
+        "title": { "type": "string", "description": "Display title of the video" },
+        "url": { "type": "string", "description": "URL of the video (blob URL for local or external link)" },
+        "type": { "type": "string", "enum": ["local", "external", "youtube"] },
+        "thumbnail": { "type": "string", "description": "Thumbnail URL" },
+        "duration": { "type": "string", "description": "Video duration string (e.g. 00:46)" },
+        "size": { "type": "number", "description": "File size in bytes if local" },
+        "storagePath": { "type": "string", "description": "Reference path in Cloud Storage for deletion" },
+        "createdAt": { "type": "number", "description": "Creation timestamp in MS" },
+        "userId": { "type": "string", "description": "ID of the user who added the video" },
+        "tags": { "type": "array", "items": { "type": "string" }, "description": "User defined categories" }
+      },
+      "required": ["title", "url", "type", "createdAt", "userId"]
+    },
+    "chat_session": {
+      "title": "Chat Session",
+      "description": "AI conversation thread",
+      "type": "object",
+      "properties": {
+        "title": { "type": "string" },
+        "userId": { "type": "string" },
+        "updatedAt": { "type": "number" },
+        "createdAt": { "type": "number" },
+        "lastMessage": { "type": "string" }
+      },
+      "required": ["userId", "updatedAt", "createdAt"]
+    },
+    "post": {
+      "title": "Post",
+      "description": "User shared content",
+      "type": "object",
+      "properties": {
+        "content": { "type": "string" },
+        "userId": { "type": "string" },
+        "authorName": { "type": "string" },
+        "authorPhoto": { "type": "string" },
+        "imageUrl": { "type": "string" },
+        "likesCount": { "type": "number" },
+        "commentsCount": { "type": "number" },
+        "createdAt": { "type": "number" }
+      },
+      "required": ["userId", "content", "createdAt"]
+    },
+    "comment": {
+      "title": "Comment",
+      "description": "Post comments",
+      "type": "object",
+      "properties": {
+        "postId": { "type": "string" },
+        "userId": { "type": "string" },
+        "authorName": { "type": "string" },
+        "content": { "type": "string" },
+        "createdAt": { "type": "number" }
+      },
+      "required": ["postId", "userId", "content", "createdAt"]
+    },
+    "direct_message": {
+      "title": "Direct Message",
+      "description": "One-on-one messages",
+      "type": "object",
+      "properties": {
+        "participants": { "type": "array", "items": { "type": "string" } },
+        "lastMessage": { "type": "string" },
+        "updatedAt": { "type": "number" }
+      },
+      "required": ["participants", "updatedAt"]
+    }
+  },
+  "firestore": {
+    "videos": {
+      "schema": "video",
+      "description": "Collection of all user videos"
+    },
+    "chat_sessions": {
+      "schema": "chat_session",
+      "description": "Root collection for AI conversations"
+    },
+    "chat_sessions/{sessionId}/messages": {
+      "schema": "object",
+      "description": "Subcollection of chat messages"
+    },
+    "posts": {
+      "schema": "post",
+      "description": "Public social feed"
+    },
+    "posts/{postId}/comments": {
+      "schema": "comment",
+      "description": "Comments on a post"
+    },
+    "direct_messages": {
+      "schema": "direct_message",
+      "description": "Private user conversations"
+    },
+    "direct_messages/{chatId}/messages": {
+      "schema": "object",
+      "description": "Subcollection of DM messages"
+    },
+    "users": {
+      "schema": "object",
+      "description": "User profiles and metadata"
+    }
+  }
+}
